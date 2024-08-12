@@ -7,6 +7,7 @@
 ## 使用方法
 
 ```cmd
+ pip install -r requirements.txt
  python3 PasswdExec.py
 ```
 
