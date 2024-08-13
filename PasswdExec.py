@@ -151,14 +151,25 @@ def deal_input():
                 DestroyPasswd.clear_passwd()
 
         elif in_string.lower()=='check':
+            # 检查重复密码
             if not CheckPasswd.find_duplicates():
                 print('[-] 无重复密码')
             else:
                 print(f'[+] 重复密码为:{CheckPasswd.find_duplicates()}')
 
+            # 检查密码安全性
+            if not load_yaml():
+                print('[-] 无弱密码')
+            else:
+                for key,value in load_yaml().items():
+                    CheckPasswd.check_passwd_security(key,value)
+            
         elif in_string.lower()=='searchpass':
             keys=SearchKey.get_keys_by_passwd()
-            print(f'[+] 重复密码的pass_key为:{keys}')
+            if not keys:
+                print('[-] 无重复密码')
+            else:
+                print(f'[+] 重复密码的pass_key为:{keys}')
 
         elif re.match('copy',in_string,flags=re.I):
             pattern=r'copy\s+(.*)'
