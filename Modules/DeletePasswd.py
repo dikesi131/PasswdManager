@@ -2,7 +2,7 @@
  # $ @Author: d1k3si
  # $ @Date: 2024-08-08 18:25:15
  # $ @LastEditors: d1k3si
- # $ @LastEditTime: 2024-08-12 00:06:37
+ # $ @LastEditTime: 2024-08-13 22:11:52
  # $ @email:2098415680@qq.com
  # $ @Copyright (c) 2024 by d1k3si
 ########################################################################
@@ -14,9 +14,13 @@ import yaml
 def delete_passwd(pass_key:str):
     yaml_data=load_yaml()
     flag=False
-    for key in yaml_data.keys():
-        if pass_key.lower()==key.lower():
-            flag=True
+    # 处理
+    try:
+        for key in yaml_data.keys():
+            if pass_key.lower()==key.lower():
+                flag=True
+    except Exception as e:
+        print(f'error: {e}')
 
     if not flag:
         print('[-] 无效pass_key,请使用show all查看pass_key')

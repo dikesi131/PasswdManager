@@ -13,10 +13,14 @@ import pyperclip
 def copy_passwd(pass_key:str):
     yaml_data=load_yaml()
     flag=False
-    for key in yaml_data.keys():
-        if pass_key.lower()==key.lower():
-            pyperclip.copy(yaml_data[pass_key])
-            flag=True
+    # 处理yaml_data==None
+    try:
+        for key in yaml_data.keys():
+            if pass_key.lower()==key.lower():
+                pyperclip.copy(yaml_data[pass_key])
+                flag=True
+    except Exception as e:
+        print(f'error: {e}')
 
     if not flag:
         print('[-] 无效的pass_key,请使用show查看')

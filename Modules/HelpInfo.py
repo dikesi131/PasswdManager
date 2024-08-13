@@ -2,7 +2,7 @@
  # $ @Author: d1k3si
  # $ @Date: 2024-08-07 17:32:59
  # $ @LastEditors: d1k3si
- # $ @LastEditTime: 2024-08-12 23:03:33
+ # $ @LastEditTime: 2024-08-13 21:40:04
  # $ @email:2098415680@qq.com
  # $ @Copyright (c) 2024 by d1k3si
 ########################################################################
@@ -53,7 +53,7 @@ def show_command_info(cmd_name:str):
         print('eg'.ljust(16,' ') + '- copy bilibili')
 
     elif cmd_name.lower()=='check':
-        print('check'.ljust(16,' ') + ':检查是否有密码重复')
+        print('check'.ljust(16,' ') + ':检查是否有密码重复并且列出弱密码')
 
     elif cmd_name.lower()=='searchpass':
         print('searchpass'.ljust(16,' ') + ':查找密码重复的pass_key,该指令可配合check使用')

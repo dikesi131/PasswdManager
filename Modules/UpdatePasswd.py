@@ -2,7 +2,7 @@
  # $ @Author: d1k3si
  # $ @Date: 2024-08-08 18:25:16
  # $ @LastEditors: d1k3si
- # $ @LastEditTime: 2024-08-12 00:08:17
+ # $ @LastEditTime: 2024-08-13 22:09:38
  # $ @email:2098415680@qq.com
  # $ @Copyright (c) 2024 by d1k3si
 ########################################################################
@@ -15,14 +15,18 @@ import yaml
 def update_custom_passwd(pass_key:str,pass_mode:str):
     yaml_data=load_yaml()
     flag=False
-    for key in yaml_data.keys():
-        if pass_key.lower()==key.lower():
-            if pass_mode.lower()=='normal':
-                yaml_data[pass_key]=generate_alphaNum_password()
-            else:
-                yaml_data[pass_key]=generate_strong_password()
+    # 处理yaml_data==None
+    try:
+        for key in yaml_data.keys():
+            if pass_key.lower()==key.lower():
+                if pass_mode.lower()=='normal':
+                    yaml_data[pass_key]=generate_alphaNum_password()
+                else:
+                    yaml_data[pass_key]=generate_strong_password()
 
-            flag=True
+                flag=True
+    except Exception as e:
+        print(f'error: {e}')
 
     if not flag:
         print('[-] 无效的pass_key,请使用show查看pass_key')
@@ -38,10 +42,14 @@ def update_custom_passwd(pass_key:str,pass_mode:str):
 def update_special_passwd(pass_key:str,passwd:str):
     yaml_data=load_yaml()
     flag=False
-    for key in yaml_data.keys():
-        if pass_key.lower()==key.lower():
-            yaml_data[pass_key]=passwd
-            flag=True
+    # 处理yaml_data==None
+    try:
+        for key in yaml_data.keys():
+            if pass_key.lower()==key.lower():
+                yaml_data[pass_key]=passwd
+                flag=True
+    except Exception as e:
+        print(f'error: {e}')
 
     if not flag:
         print('[-] 无效的pass_key,请使用show查看pass_key')

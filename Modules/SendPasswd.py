@@ -91,10 +91,14 @@ def send_storage_passwd():
     text_lines=[]
     pass_data=load_yaml()
     index=0
-    for key,value in pass_data.items():
-        text_line=f'[{index}]{key}:\t{value}'
-        text_lines.append(text_line)
-        index+=1
+    # 处理pass_data==None
+    try:
+        for key,value in pass_data.items():
+            text_line=f'[{index}]{key}:\t{value}'
+            text_lines.append(text_line)
+            index+=1
+    except Exception as e:
+        print(f'error: {e}')
 
     # list --> string with \n
     message='\n'.join(text_lines)
